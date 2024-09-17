@@ -1,0 +1,1 @@
+Numbers are represented as 32bit fixed point S15.16
