@@ -5,9 +5,9 @@
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 
-VERILOG_SOURCES += $(PWD)/../src/top.v $(PWD)/../src/log.v
+VERILOG_SOURCES += $(PWD)/../src/transform.v $(PWD)/../src/MAC.v
 
-TOPLEVEL = top
+TOPLEVEL = transform
 
 MODULE = testbench
 

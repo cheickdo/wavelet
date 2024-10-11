@@ -1,5 +1,5 @@
 $date
-	Thu Sep 12 22:46:50 2024
+	Thu Oct 10 22:11:59 2024
 $end
 $version
 	Icarus Verilog
@@ -7,65 +7,130 @@ $end
 $timescale
 	1ps
 $end
-$scope module top $end
-$var wire 1 ! clk $end
-$var wire 32 " f [31:0] $end
-$var parameter 32 # size $end
+$scope module transform $end
+$var wire 1 ! EnD1a $end
+$var wire 1 " EnD1b $end
+$var wire 1 # EnD1c $end
+$var wire 1 $ EnD1d $end
+$var wire 1 % EnD2a $end
+$var wire 1 & EnD2b $end
+$var wire 1 ' EnD2c $end
+$var wire 1 ( EnD2d $end
+$var wire 1 ) EnD3a $end
+$var wire 1 * EnD3b $end
+$var wire 1 + EnD3c $end
+$var wire 1 , EnD3d $end
+$var wire 1 - EnD4a $end
+$var wire 1 . EnD4b $end
+$var wire 1 / EnD4c $end
+$var wire 1 0 EnD4d $end
+$var wire 1 1 EnR1 $end
+$var wire 1 2 EnR2 $end
+$var wire 1 3 EnR3 $end
+$var wire 1 4 EnR4 $end
+$var wire 32 5 H [31:0] $end
+$var wire 32 6 L [31:0] $end
+$var wire 2 7 S1 [1:0] $end
+$var wire 2 8 S2 [1:0] $end
+$var wire 2 9 S3 [1:0] $end
+$var wire 2 : S4 [1:0] $end
+$var wire 2 ; S5 [1:0] $end
+$var wire 2 < S6 [1:0] $end
+$var wire 1 = S7 $end
+$var wire 1 > clk $end
+$var wire 32 ? x [31:0] $end
+$var wire 32 @ temp [31:0] $end
+$var parameter 32 A size $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-b100000 #
+b100000 A
 $end
 #0
 $dumpvars
-b100 "
-0!
+bx @
+bz ?
+0>
+z=
+bz <
+bz ;
+bz :
+bz 9
+bz 8
+bz 7
+bz 6
+bz 5
+z4
+z3
+z2
+z1
+z0
+z/
+z.
+z-
+z,
+z+
+z*
+z)
+z(
+z'
+z&
+z%
+z$
+z#
+z"
+z!
 $end
 #5000000
-1!
+b10 9
+b1110 @
+b10 8
+b10 7
+b10 ?
+1>
 #10000000
-0!
+0>
 #15000000
-1!
+1>
 #20000000
-0!
+0>
 #25000000
-1!
+1>
 #30000000
-0!
+0>
 #35000000
-1!
+1>
 #40000000
-0!
+0>
 #45000000
-1!
+1>
 #50000000
-0!
+0>
 #55000000
-1!
+1>
 #60000000
-0!
+0>
 #65000000
-1!
+1>
 #70000000
-0!
+0>
 #75000000
-1!
+1>
 #80000000
-0!
+0>
 #85000000
-1!
+1>
 #90000000
-0!
+0>
 #95000000
-1!
+1>
 #100000000
-0!
+0>
 #105000000
-1!
+1>
 #110000000
-0!
+0>
 #115000000
-1!
+1>
 #115000001

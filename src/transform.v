@@ -16,6 +16,30 @@ module transform (
 
 );
 
+    //enable signals
+    input EnR4;
+    input EnR3;
+    input EnR2;
+    input EnR1;
+    input EnD1a;
+    input EnD2a;
+    input EnD3a;
+    input EnD4a;
+    input EnD1b;
+    input EnD2b;
+    input EnD3b;
+    input EnD4b;
+    input EnD1c;
+    input EnD2c;
+    input EnD3c;
+    input EnD4c;
+    input EnD1d;
+    input EnD2d;
+    input EnD3d;
+    input EnD4d;
+
+    wire [size-1: 0] temp;
+
     parameter size = 32;
 
     //Even registers
@@ -50,6 +74,13 @@ module transform (
     reg [size-1:0] D2d;
     reg [size-1:0] D3d;
     reg [size-1:0] D4d;
+
+    mac u0(.a(x), .b(S1), .c(S2), .d(temp), .cons(3));
+
+    initial begin
+        $dumpfile("dump.vcd");
+        $dumpvars(1, transform);
+    end
 
 
 endmodule
