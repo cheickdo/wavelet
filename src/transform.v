@@ -38,7 +38,19 @@ module transform (
     input EnD3d;
     input EnD4d;
 
-    wire [size-1: 0] temp;
+    wire [size-1: 0] Even0;
+    wire [size-1: 0] Even1;
+    wire [size-1: 0] Even2;
+    wire [size-1: 0] Even3;
+    wire [size-1: 0] Even4;
+    wire [size-1: 0] Even5;
+
+    wire [size-1: 0] Odd0;
+    wire [size-1: 0] Odd1;
+    wire [size-1: 0] Odd2;
+    wire [size-1: 0] Odd3;
+    wire [size-1: 0] Odd4;
+    wire [size-1: 0] Odd5;
 
     parameter size = 32;
 
@@ -76,6 +88,11 @@ module transform (
     reg [size-1:0] D4d;
 
     mac u0(.a(x), .b(S1), .c(S2), .d(temp), .cons(3));
+
+    //Send the output of the registers through wires
+    always@(*)
+        case(S1)
+        endcase
 
     initial begin
         $dumpfile("dump.vcd");
