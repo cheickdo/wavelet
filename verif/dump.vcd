@@ -1,5 +1,5 @@
 $date
-	Thu Oct 10 22:11:59 2024
+	Mon Oct 14 18:34:00 2024
 $end
 $version
 	Icarus Verilog
@@ -26,41 +26,125 @@ $var wire 1 / EnD4c $end
 $var wire 1 0 EnD4d $end
 $var wire 1 1 EnR1 $end
 $var wire 1 2 EnR2 $end
-$var wire 1 3 EnR3 $end
-$var wire 1 4 EnR4 $end
-$var wire 32 5 H [31:0] $end
-$var wire 32 6 L [31:0] $end
-$var wire 2 7 S1 [1:0] $end
-$var wire 2 8 S2 [1:0] $end
-$var wire 2 9 S3 [1:0] $end
-$var wire 2 : S4 [1:0] $end
-$var wire 2 ; S5 [1:0] $end
-$var wire 2 < S6 [1:0] $end
-$var wire 1 = S7 $end
-$var wire 1 > clk $end
-$var wire 32 ? x [31:0] $end
-$var wire 32 @ temp [31:0] $end
-$var parameter 32 A size $end
+$var wire 1 3 EnR2p $end
+$var wire 1 4 EnR3 $end
+$var wire 1 5 EnR3p $end
+$var wire 1 6 EnR4 $end
+$var wire 1 7 EnR4p $end
+$var wire 32 8 H [31:0] $end
+$var wire 2 9 S1 [1:0] $end
+$var wire 2 : S2 [1:0] $end
+$var wire 2 ; S3 [1:0] $end
+$var wire 2 < S4 [1:0] $end
+$var wire 2 = S5 [1:0] $end
+$var wire 2 > S6 [1:0] $end
+$var wire 1 ? S7 $end
+$var wire 1 @ clk $end
+$var wire 32 A x [31:0] $end
+$var wire 32 B Odd3 [31:0] $end
+$var wire 32 C Odd1 [31:0] $end
+$var wire 32 D Even4 [31:0] $end
+$var wire 32 E Even2 [31:0] $end
+$var parameter 32 F alpha $end
+$var parameter 32 G beta $end
+$var parameter 32 H delta $end
+$var parameter 32 I gamma $end
+$var parameter 32 J size $end
+$var parameter 32 K zeta $end
+$var reg 32 L D1a [31:0] $end
+$var reg 32 M D1b [31:0] $end
+$var reg 32 N D1c [31:0] $end
+$var reg 32 O D1d [31:0] $end
+$var reg 32 P D2a [31:0] $end
+$var reg 32 Q D2b [31:0] $end
+$var reg 32 R D2c [31:0] $end
+$var reg 32 S D2d [31:0] $end
+$var reg 32 T D3a [31:0] $end
+$var reg 32 U D3b [31:0] $end
+$var reg 32 V D3c [31:0] $end
+$var reg 32 W D3d [31:0] $end
+$var reg 32 X D4a [31:0] $end
+$var reg 32 Y D4b [31:0] $end
+$var reg 32 Z D4c [31:0] $end
+$var reg 32 [ D4d [31:0] $end
+$var reg 32 \ Even0 [31:0] $end
+$var reg 32 ] Even1 [31:0] $end
+$var reg 32 ^ Even3 [31:0] $end
+$var reg 32 _ Even5 [31:0] $end
+$var reg 32 ` L [31:0] $end
+$var reg 32 a Odd0 [31:0] $end
+$var reg 32 b Odd2 [31:0] $end
+$var reg 32 c Odd4 [31:0] $end
+$var reg 32 d R1 [31:0] $end
+$var reg 32 e R2 [31:0] $end
+$var reg 32 f R2p [31:0] $end
+$var reg 32 g R3 [31:0] $end
+$var reg 32 h R3p [31:0] $end
+$var reg 32 i R4 [31:0] $end
+$var reg 32 j R4p [31:0] $end
+$var reg 32 k y [31:0] $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-b100000 A
+b110 K
+b100000 J
+b100 I
+b101 H
+b11 G
+b10 F
 $end
 #0
 $dumpvars
-bx @
-bz ?
-0>
-z=
+bx k
+bx j
+bx i
+bx h
+bx g
+bx f
+bx e
+bx d
+bx c
+bx b
+bx a
+bx `
+bx _
+bx ^
+bx ]
+bx \
+bx [
+bx Z
+bx Y
+bx X
+bx W
+bx V
+bx U
+bx T
+bx S
+bx R
+bx Q
+bx P
+bx O
+bx N
+bx M
+bx L
+bx E
+bx D
+bx C
+bx B
+bz A
+0@
+z?
+bz >
+bz =
 bz <
 bz ;
 bz :
 bz 9
 bz 8
-bz 7
-bz 6
-bz 5
+z7
+z6
+z5
 z4
 z3
 z2
@@ -82,55 +166,57 @@ z#
 z"
 z!
 $end
-#5000000
-b10 9
-b1110 @
-b10 8
-b10 7
-b10 ?
-1>
-#10000000
-0>
-#15000000
-1>
-#20000000
-0>
-#25000000
-1>
-#30000000
-0>
-#35000000
-1>
-#40000000
-0>
-#45000000
-1>
-#50000000
-0>
-#55000000
-1>
-#60000000
-0>
-#65000000
-1>
-#70000000
-0>
-#75000000
-1>
-#80000000
-0>
-#85000000
-1>
-#90000000
-0>
-#95000000
-1>
-#100000000
-0>
-#105000000
-1>
-#110000000
-0>
-#115000000
-1>
-#115000001
+#5000
+b10 ;
+b10 :
+b0 9
+11
+b10 A
+1@
+#10000
+0@
+#15000
+b10 \
+b10 d
+1@
+#20000
+0@
+#25000
+1@
+#30000
+0@
+#35000
+1@
+#40000
+0@
+#45000
+1@
+#50000
+0@
+#55000
+1@
+#60000
+0@
+#65000
+1@
+#70000
+0@
+#75000
+1@
+#80000
+0@
+#85000
+1@
+#90000
+0@
+#95000
+1@
+#100000
+0@
+#105000
+1@
+#110000
+0@
+#115000
+1@
+#115001

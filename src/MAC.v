@@ -1,8 +1,8 @@
 module mac(
-    input [size-1:0] a,
-    input [size-1:0] b,
-    input [size-1:0] c,
+    input [size-1:0] in0,
+    input [size-1:0] in1,
     input [size-1:0] cons,
+    input [size-1:0] in3,
     output reg [size-1:0] d
 );
     parameter size = 32;
@@ -12,6 +12,6 @@ module mac(
     
     //assign in = a + b;
     //assign temp = in * const;
-    assign d = ((a+b)*cons) + c;
+    assign d = ((in0+in1)*cons) + in3;
 
 endmodule
