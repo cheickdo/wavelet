@@ -144,54 +144,6 @@ module transform (
         if (EnD3d) D3d <= Odd3;
         if (EnD4d) D4d <= Odd3;
         
-        /*
-        case (S1)
-        2'b00:  Even0 <= R1;
-        2'b01:  Even0 <= R2;
-        2'b10:  Even0 <= R3;
-        2'b11:  Even0 <= R4; 
-        endcase
-
-        case (S2)
-        2'b00:  Odd0 <= x;
-        2'b01:  Odd0 <= R2p;
-        2'b10:  Odd0 <= R3p;
-        2'b11:  Odd0 <= R4p; 
-        endcase
-
-        case (S3)
-        2'b00:  Even1 <= D1a;
-        2'b01:  Even1 <= D2a;
-        2'b10:  Even1 <= D3a;
-        2'b11:  Even1 <= D4a;         
-        endcase
-
-        case (S4)
-        2'b00:  Odd2 <= D1b;
-        2'b01:  Odd2 <= D2b;
-        2'b10:  Odd2 <= D3b;
-        2'b11:  Odd2 <= D4b;    
-        endcase
-
-        case (S5)
-        2'b00:  Even3 <= D1c;
-        2'b01:  Even3 <= D2c;
-        2'b10:  Even3 <= D3c;
-        2'b11:  Even3 <= D4c;   
-        endcase
-
-        case (S6)
-        2'b00:  Odd4 <= D1d;
-        2'b01:  Odd4 <= D2d;
-        2'b10:  Odd4 <= D3d;
-        2'b11:  Odd4 <= D4d;
-        endcase
-
-        case (S7)
-        1'b0: L <= Even5;
-        1'b1: y <= Even5;
-        endcase*/
-        
     end
 
     //Multiple and Accumulate units
