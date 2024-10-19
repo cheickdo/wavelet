@@ -1,5 +1,5 @@
 $date
-	Mon Oct 14 18:34:00 2024
+	Fri Oct 18 22:38:10 2024
 $end
 $version
 	Icarus Verilog
@@ -8,104 +8,84 @@ $timescale
 	1ps
 $end
 $scope module transform $end
-$var wire 1 ! EnD1a $end
-$var wire 1 " EnD1b $end
-$var wire 1 # EnD1c $end
-$var wire 1 $ EnD1d $end
-$var wire 1 % EnD2a $end
-$var wire 1 & EnD2b $end
-$var wire 1 ' EnD2c $end
-$var wire 1 ( EnD2d $end
-$var wire 1 ) EnD3a $end
-$var wire 1 * EnD3b $end
-$var wire 1 + EnD3c $end
-$var wire 1 , EnD3d $end
-$var wire 1 - EnD4a $end
-$var wire 1 . EnD4b $end
-$var wire 1 / EnD4c $end
-$var wire 1 0 EnD4d $end
-$var wire 1 1 EnR1 $end
-$var wire 1 2 EnR2 $end
-$var wire 1 3 EnR2p $end
-$var wire 1 4 EnR3 $end
-$var wire 1 5 EnR3p $end
-$var wire 1 6 EnR4 $end
-$var wire 1 7 EnR4p $end
-$var wire 32 8 H [31:0] $end
-$var wire 2 9 S1 [1:0] $end
-$var wire 2 : S2 [1:0] $end
-$var wire 2 ; S3 [1:0] $end
-$var wire 2 < S4 [1:0] $end
-$var wire 2 = S5 [1:0] $end
-$var wire 2 > S6 [1:0] $end
-$var wire 1 ? S7 $end
-$var wire 1 @ clk $end
-$var wire 32 A x [31:0] $end
-$var wire 32 B Odd3 [31:0] $end
-$var wire 32 C Odd1 [31:0] $end
-$var wire 32 D Even4 [31:0] $end
-$var wire 32 E Even2 [31:0] $end
-$var parameter 32 F alpha $end
-$var parameter 32 G beta $end
-$var parameter 32 H delta $end
-$var parameter 32 I gamma $end
-$var parameter 32 J size $end
-$var parameter 32 K zeta $end
-$var reg 32 L D1a [31:0] $end
-$var reg 32 M D1b [31:0] $end
-$var reg 32 N D1c [31:0] $end
-$var reg 32 O D1d [31:0] $end
-$var reg 32 P D2a [31:0] $end
-$var reg 32 Q D2b [31:0] $end
-$var reg 32 R D2c [31:0] $end
-$var reg 32 S D2d [31:0] $end
-$var reg 32 T D3a [31:0] $end
-$var reg 32 U D3b [31:0] $end
-$var reg 32 V D3c [31:0] $end
-$var reg 32 W D3d [31:0] $end
-$var reg 32 X D4a [31:0] $end
-$var reg 32 Y D4b [31:0] $end
-$var reg 32 Z D4c [31:0] $end
-$var reg 32 [ D4d [31:0] $end
-$var reg 32 \ Even0 [31:0] $end
-$var reg 32 ] Even1 [31:0] $end
-$var reg 32 ^ Even3 [31:0] $end
-$var reg 32 _ Even5 [31:0] $end
-$var reg 32 ` L [31:0] $end
-$var reg 32 a Odd0 [31:0] $end
-$var reg 32 b Odd2 [31:0] $end
-$var reg 32 c Odd4 [31:0] $end
-$var reg 32 d R1 [31:0] $end
-$var reg 32 e R2 [31:0] $end
-$var reg 32 f R2p [31:0] $end
-$var reg 32 g R3 [31:0] $end
-$var reg 32 h R3p [31:0] $end
-$var reg 32 i R4 [31:0] $end
-$var reg 32 j R4p [31:0] $end
-$var reg 32 k y [31:0] $end
+$var wire 32 ! H [31:0] $end
+$var wire 2 " S1 [1:0] $end
+$var wire 2 # S2 [1:0] $end
+$var wire 2 $ S3 [1:0] $end
+$var wire 2 % S4 [1:0] $end
+$var wire 2 & S5 [1:0] $end
+$var wire 2 ' S6 [1:0] $end
+$var wire 1 ( S7 $end
+$var wire 1 ) clk $end
+$var wire 1 * resetn $end
+$var wire 32 + x [31:0] $end
+$var wire 32 , Odd3 [31:0] $end
+$var wire 32 - Odd1 [31:0] $end
+$var wire 32 . Even4 [31:0] $end
+$var wire 32 / Even2 [31:0] $end
+$var parameter 32 0 alpha $end
+$var parameter 32 1 beta $end
+$var parameter 32 2 delta $end
+$var parameter 32 3 gamma $end
+$var parameter 32 4 size $end
+$var parameter 32 5 zeta $end
+$var reg 32 6 D1a [31:0] $end
+$var reg 32 7 D1b [31:0] $end
+$var reg 32 8 D1c [31:0] $end
+$var reg 32 9 D1d [31:0] $end
+$var reg 32 : D2a [31:0] $end
+$var reg 32 ; D2b [31:0] $end
+$var reg 32 < D2c [31:0] $end
+$var reg 32 = D2d [31:0] $end
+$var reg 32 > D3a [31:0] $end
+$var reg 32 ? D3b [31:0] $end
+$var reg 32 @ D3c [31:0] $end
+$var reg 32 A D3d [31:0] $end
+$var reg 1 B EnD1a $end
+$var reg 1 C EnD1b $end
+$var reg 1 D EnD1c $end
+$var reg 1 E EnD1d $end
+$var reg 1 F EnD2a $end
+$var reg 1 G EnD2b $end
+$var reg 1 H EnD2c $end
+$var reg 1 I EnD2d $end
+$var reg 1 J EnD3a $end
+$var reg 1 K EnD3b $end
+$var reg 1 L EnD3c $end
+$var reg 1 M EnD3d $end
+$var reg 1 N EnR1 $end
+$var reg 1 O EnR2 $end
+$var reg 1 P EnR2p $end
+$var reg 1 Q EnR3 $end
+$var reg 1 R EnR3p $end
+$var reg 32 S Even0 [31:0] $end
+$var reg 32 T Even1 [31:0] $end
+$var reg 32 U Even3 [31:0] $end
+$var reg 32 V Even5 [31:0] $end
+$var reg 32 W L [31:0] $end
+$var reg 32 X Odd0 [31:0] $end
+$var reg 32 Y Odd2 [31:0] $end
+$var reg 32 Z Odd4 [31:0] $end
+$var reg 32 [ R1 [31:0] $end
+$var reg 32 \ R2 [31:0] $end
+$var reg 32 ] R2p [31:0] $end
+$var reg 32 ^ R3 [31:0] $end
+$var reg 32 _ R3p [31:0] $end
+$var reg 5 ` state [4:0] $end
+$var reg 32 a y [31:0] $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-b110 K
-b100000 J
-b100 I
-b101 H
-b11 G
-b10 F
+b110 5
+b100000 4
+b100 3
+b101 2
+b11 1
+b10 0
 $end
 #0
 $dumpvars
-bx k
-bx j
-bx i
-bx h
-bx g
-bx f
-bx e
-bx d
-bx c
-bx b
 bx a
 bx `
 bx _
@@ -121,102 +101,130 @@ bx V
 bx U
 bx T
 bx S
-bx R
-bx Q
-bx P
-bx O
-bx N
-bx M
-bx L
-bx E
-bx D
-bx C
-bx B
-bz A
-0@
-z?
-bz >
-bz =
-bz <
-bz ;
-bz :
-bz 9
-bz 8
-z7
-z6
-z5
-z4
-z3
-z2
-z1
-z0
-z/
-z.
-z-
-z,
-z+
-z*
-z)
+xR
+xQ
+xP
+xO
+xN
+xM
+xL
+xK
+xJ
+xI
+xH
+xG
+xF
+xE
+xD
+xC
+xB
+bx A
+bx @
+bx ?
+bx >
+bx =
+bx <
+bx ;
+bx :
+bx 9
+bx 8
+bx 7
+bx 6
+bx /
+bx .
+bx -
+bx ,
+bz +
+0*
+0)
 z(
-z'
-z&
-z%
-z$
-z#
-z"
-z!
+bz '
+bz &
+bz %
+bz $
+bz #
+bz "
+bz !
 $end
 #5000
-b10 ;
-b10 :
-b0 9
-11
-b10 A
-1@
+b10 $
+b10 #
+b0 "
+b10 +
+1*
+0Q
+0O
+1N
+b0 `
+1)
 #10000
-0@
+0)
 #15000
-b10 \
-b10 d
-1@
+0N
+b10 S
+b1 `
+b10 [
+1)
 #20000
-0@
+0)
 #25000
-1@
+1N
+b10 `
+1)
 #30000
-0@
+0)
 #35000
-1@
+0N
+b11 `
+1)
 #40000
-0@
+0)
 #45000
-1@
+1N
+b100 `
+1)
 #50000
-0@
+0)
 #55000
-1@
+0N
+b101 `
+1)
 #60000
-0@
+0)
 #65000
-1@
+1N
+b110 `
+1)
 #70000
-0@
+0)
 #75000
-1@
+0N
+b111 `
+1)
 #80000
-0@
+0)
 #85000
-1@
+1O
+1N
+b1000 `
+1)
 #90000
-0@
+0)
 #95000
-1@
+0O
+0N
+b1001 `
+1)
 #100000
-0@
+0)
 #105000
-1@
+1N
+b1010 `
+1)
 #110000
-0@
+0)
 #115000
-1@
+0N
+b1011 `
+1)
 #115001
