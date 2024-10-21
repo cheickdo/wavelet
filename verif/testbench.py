@@ -25,14 +25,10 @@ async def dff_simple_test(dut):
     await RisingEdge(dut.clk)
     #expected_val = 0  # Matches initial input value
     dut.resetn.value = 1
-    for i in range(10):
+    for i in range(50):
         #val = random.randint(0, 1)
         #dut.d.value = val  # Assign the random value val to the input port d
         dut.x.value = 2
-        dut.S1.value = 0
-        #dut.S1.value = 2
-        dut.S2.value = 2
-        dut.S3.value = 2
 
         #
         await RisingEdge(dut.clk)
