@@ -16,7 +16,9 @@ async def dff_simple_test(dut):
     # Set initial input value to prevent it from floating
     #dut.d.value = 0
 
-    clock = Clock(dut.clk, 10, units="ns")  # Create a 10us period clock on port clk
+    initial = 1
+
+    clock = Clock(dut.clk, 10, units="ps")  # Create a 10us period clock on port clk
     dut.resetn.value = 0
     # Start the clock. Start it low to avoid issues on the first RisingEdge
     cocotb.start_soon(clock.start(start_high=False))
@@ -28,7 +30,8 @@ async def dff_simple_test(dut):
     for i in range(50):
         #val = random.randint(0, 1)
         #dut.d.value = val  # Assign the random value val to the input port d
-        dut.x.value = 2
+        dut.x.value = (initial)*(2**16)
+        initial = initial + 1
 
         #
         await RisingEdge(dut.clk)

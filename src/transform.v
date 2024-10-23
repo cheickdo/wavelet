@@ -135,37 +135,49 @@ module transform (
         if (EnR3) R3 <= y;
         //if (EnR4) R4 <= y;
 
-        if (EnR2p) R2p <= y;
+        //if (EnR2p) R2p <= y;
+        R2p <= y;
         if (EnR3p) R3p <= y;
         //if (EnR4p) R4p <= y;
 
-        if (EnD1a) D1a <= Even0;
-        if (EnD2a) D2a <= Even0;
-        if (EnD3a) D3a <= Even0;
+        //if (EnD1a) D1a <= Even0;
+        //if (EnD2a) D2a <= Even0;
+        //if (EnD3a) D3a <= Even0;
         //if (EnD4a) D4a <= Even0;
 
-        if (EnD1b) D1a <= Odd1;
-        if (EnD2b) D2a <= Odd1;
-        if (EnD3b) D3a <= Odd1;
+        if (EnD1a) D1a <= Odd1;
+        if (EnD2a) D2a <= Odd1;
+        if (EnD3a) D3a <= Odd1;
+        if (EnD4a) D4a <= Odd1;
+
+        //if (EnD1b) D1a <= Odd1;
+        //if (EnD2b) D2a <= Odd1;
+        //if (EnD3b) D3a <= Odd1;
         //if (EnD4b) D4a <= Odd1;
 
-        if (EnD1c) D1c <= Even2;
-        if (EnD2c) D2c <= Even2;
-        if (EnD3c) D3c <= Even2;
+        //if (EnD1c) D1c <= Even2;
+        //if (EnD2c) D2c <= Even2;
+        //if (EnD3c) D3c <= Even2;
         //if (EnD4c) D4c <= Even2;
 
-        if (EnD1d) D1d <= Odd3;
-        if (EnD2d) D2d <= Odd3;
-        if (EnD3d) D3d <= Odd3;
+        //if (EnD1d) D1d <= Odd3;
+        //if (EnD2d) D2d <= Odd3;
+        //if (EnD3d) D3d <= Odd3;
         //if (EnD4d) D4d <= Odd3;
         
     end
 
     //Multiple and Accumulate units
-    mac u0(.in0(Even0), .in1(Even1), .in3(Odd0), .d(Odd1), .cons(alpha));
-    mac u1(.in0(Odd1), .in1(Odd2), .in3(Even1), .d(Even2), .cons(beta));
-    mac u2(.in0(Even2), .in1(Even3), .in3(Odd2), .d(Odd3), .cons(gamma));
-    mac u3(.in0(Odd3), .in1(Odd4), .in3(Even3), .d(Even4), .cons(alpha));
+    //mac u0(.in0(Even0), .in1(Even1), .in3(Odd0), .d(Odd1), .cons(alpha));
+    //mac u1(.in0(Odd1), .in1(Odd2), .in3(Even1), .d(Even2), .cons(beta));
+    //mac u2(.in0(Even2), .in1(Even3), .in3(Odd2), .d(Odd3), .cons(gamma));
+    //mac u3(.in0(Odd3), .in1(Odd4), .in3(Even3), .d(Even4), .cons(delta));
+
+    //Multiply and accumulate units for Daub-4 DWT
+    mac u0(.in0(Even0), .in1(0), .in3(Odd0), .d(Odd1), .cons(alpha));
+    mac u1(.in0(Odd1), .in1(0), .in3(Even0), .d(Even1), .cons(beta));
+    mac u2(.in0(Odd2), in1(0), in3(Even1), .d(Even2), .cons(gamma));
+    mac u3(.in0(Even2), .in1(0), .in3(Odd3), .d(Odd4, cons(1)));
 
     //control unit
     reg [3:0] state;

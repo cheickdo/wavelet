@@ -1,50 +1,36 @@
 [*]
 [*] GTKWave Analyzer v3.3.120 (w)1999-2024 BSI
-[*] Mon Oct 21 02:38:57 2024
+[*] Wed Oct 23 00:11:41 2024
 [*]
 [dumpfile] "/home/chk/Documents/stransform/verif/dump.vcd"
-[dumpfile_mtime] "Mon Oct 21 02:36:06 2024"
-[dumpfile_size] 7941
+[dumpfile_mtime] "Wed Oct 23 00:10:18 2024"
+[dumpfile_size] 39399
 [savefile] "/home/chk/Documents/stransform/verif/trace1.gtkw"
 [timestart] 0
 [size] 966 622
 [pos] -777 347
-*-15.300000 15000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-4.500000 20 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [sst_width] 209
-[signals_width] 142
+[signals_width] 118
 [sst_expanded] 1
-[sst_vpaned_height] 170
+[sst_vpaned_height] 162
 @28
 transform.clk
 transform.S1[1:0]
-transform.S2[1:0]
-transform.S3[1:0]
-transform.S4[1:0]
-transform.S5[1:0]
-transform.S6[1:0]
-transform.S7
-transform.EnR1
-transform.EnR2
-transform.EnR2p
-transform.EnR3
-transform.EnR3p
+@22
+transform.Even0[31:0]
+transform.Even1[31:0]
+transform.Even2[31:0]
+transform.Even2[31:0]
+transform.L[31:0]
+transform.H[31:0]
+transform.Odd0[31:0]
+transform.Odd1[31:0]
+transform.Odd2[31:0]
+transform.Odd3[31:0]
+@23
+transform.Odd4[31:0]
 @22
 transform.state[3:0]
-@28
-transform.cycle1[2:0]
-transform.cycle2[1:0]
-transform.S3[1:0]
-@22
-transform.S3shift[3:0]
-@28
-transform.preS3[1:0]
-transform.EnD1a
-transform.EnD2a
-transform.EnD3a
-transform.preEnD1a
-transform.preEnD2a
-transform.preEnD3a
-@23
-transform.EnD1shift[4:0]
 [pattern_trace] 1
 [pattern_trace] 0

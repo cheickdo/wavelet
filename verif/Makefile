@@ -5,7 +5,7 @@
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 
-VERILOG_SOURCES += $(PWD)/../src/transform.v $(PWD)/../src/MAC.v
+VERILOG_SOURCES += $(PWD)/../src/transform.v $(PWD)/../src/MAC.v $(PWD)/../src/fixed_mult.v
 
 TOPLEVEL = transform
 
