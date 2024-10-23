@@ -4,8 +4,8 @@ module transform (
     input clk,
     input resetn,
     input [size-1:0] x,
-    //output [size-1:0] L,
-    output [size-1:0] H
+    output reg [size-1:0] L,
+    output reg [size-1:0] H
     //Add register and delay unit enables to signal IO list
 );
 
@@ -45,11 +45,13 @@ module transform (
 
     parameter size = 32;
 
-    parameter alpha = 2;
-    parameter beta = 3;
-    parameter gamma = 4;
-    parameter delta = 5;
-    parameter zeta = 6;
+    parameter alpha = 2*(2**16);
+    parameter beta = 3*(2**16);
+    parameter gamma = 4*(2**16);
+    parameter delta = 5*(2**16);
+    parameter zeta = 6*(2**16);
+    parameter omega = 2;
+    parameter nabla = 2;
 
     //Enable signals
 
@@ -107,26 +109,37 @@ module transform (
 
     //feedback unit
     reg [size-1:0] y;
-    reg [size-1:0] L;
+    //reg [size-1:0] L;
 
     //Just for Daub4
-    assign EnD1a = EnD1shift[3];
-    assign EnD2a = EnD2shift[3];
-    assign EnD3a = EnD3shift[3];
+    assign EnD1a = EnD1shift[2];
+    assign EnD2a = EnD2shift[2];
+    assign EnD3a = EnD3shift[2];
     assign S3 = S3shift[3:2];
 
     always@(*) begin
         //Muxes
-        assign Even0 = S1[1] ? (S1[0] ? /*R4*/1'b0 : R3) : (S1[0] ? R2 : R1);
-        assign Even1 = S3[1] ? (S3[0] ? /*D4a*/1'b0 : D3a) : (S3[0] ? D2a : D1a);
-        assign Even3 = S5[1] ? (S5[0] ? /*D4c*/1'b0 : D3c) : (S5[0] ? D2c : D1c);
+        //assign Even0 = S1[1] ? (S1[0] ? /*R4*/1'b0 : R3) : (S1[0] ? R2 : R1);
+        //assign Even1 = S3[1] ? (S3[0] ? /*D4a*/1'b0 : D3a) : (S3[0] ? D2a : D1a);
+        //assign Even3 = S5[1] ? (S5[0] ? /*D4c*/1'b0 : D3c) : (S5[0] ? D2c : D1c);
         
-        assign Odd0 = S2[1] ? (S2[0] ? /*R4p*/1'b0 : R3p) : (S2[0] ? R2p : x);
-        assign Odd2 = S4[1] ? (S4[0] ? /*D4b*/1'b0 : D3b) : (S4[0] ? D2b : D1b);
-        assign Odd4 = S6[1] ? (S6[0] ? /*D4d*/1'b0 : D3d) : (S6[0] ? D2d : D1d);
+        //assign Odd0 = S2[1] ? (S2[0] ? /*R4p*/1'b0 : R3p) : (S2[0] ? R2p : x);
+        //assign Odd2 = S4[1] ? (S4[0] ? /*D4b*/1'b0 : D3b) : (S4[0] ? D2b : D1b);
+        //assign Odd4 = S6[1] ? (S6[0] ? /*D4d*/1'b0 : D3d) : (S6[0] ? D2d : D1d);
 
-        if (S7) y <= Even5;
-        else L <= Even5;
+        //if (S7) y <= Even5;
+        //else L <= Even5;
+
+        //DAUB-4 DWT Muxes
+        assign Even0 = S1[1] ? (S1[0] ? /*R4*/R3 : R2) : (S1[0] ? R1 : 1'b0);
+        assign Odd0 = S2[1] ? (S2[0] ? /*R4p*/R3p : y) : (S2[0] ? x : 1'b0);
+
+        assign Odd2 = S3[1] ? (S3[0] ? /*D4a*/D3a : D2a) : (S3[0] ? D1a : 1'b0);
+
+        if (S4) y<= Even3;
+        else L<= Even3;
+
+
     end
 
     always@(posedge clk) begin
@@ -148,7 +161,7 @@ module transform (
         if (EnD1a) D1a <= Odd1;
         if (EnD2a) D2a <= Odd1;
         if (EnD3a) D3a <= Odd1;
-        if (EnD4a) D4a <= Odd1;
+        //if (EnD4a) D4a <= Odd1;
 
         //if (EnD1b) D1a <= Odd1;
         //if (EnD2b) D2a <= Odd1;
@@ -176,8 +189,11 @@ module transform (
     //Multiply and accumulate units for Daub-4 DWT
     mac u0(.in0(Even0), .in1(0), .in3(Odd0), .d(Odd1), .cons(alpha));
     mac u1(.in0(Odd1), .in1(0), .in3(Even0), .d(Even1), .cons(beta));
-    mac u2(.in0(Odd2), in1(0), in3(Even1), .d(Even2), .cons(gamma));
-    mac u3(.in0(Even2), .in1(0), .in3(Odd3), .d(Odd4, cons(1)));
+    mac u2(.in0(Odd2), .in1(0), .in3(Even1), .d(Even2), .cons(gamma));
+    mac u3(.in0(Even2), .in1(0), .in3(Odd2), .d(Odd3), .cons(1));
+
+    fixed_mult m1(.in0(Even2), .in1(omega), .product(Even3));
+    fixed_mult m2(.in0(Odd3), .in1(nabla), .product(H));
 
     //control unit
     reg [3:0] state;
@@ -201,32 +217,32 @@ module transform (
         EnR3 = 1'b0;
         EnR2p = 1'b0;
         EnR3p = 1'b0;
-        S1 = 2'b0;
-        S2 = 2'b0;
+        //S1 = 2'b0;
+        //S2 = 2'b0;
         //S3 = 2'b0;
-        S4 = 2'b0;
-        S5 = 2'b0;
-        S6 = 2'b0;
-        S7 = 1'b0;
+        //S4 = 2'b0;
+        //S5 = 2'b0;
+        //S6 = 2'b0;
+        //S7 = 1'b0;
         SEn = 1'b0;
         preEnD1a = 1'b0;
         preEnD2a = 1'b0;
         preEnD3a = 1'b0;
-        preS3 = 2'b0;
+        //preS3 = 2'b0;
         //EnD1a = 1'b0;
 
-        if (cycle1[0]) begin //checking 2k cycle
+        if (!cycle1[0]) begin //checking 2k cycle
             EnR1 = 1'b1;
             preEnD1a = 1'b1;
         end
 
-        if (!cycle1[0]) begin//checking 2k+1 cycle
+        if (cycle1[0]) begin//checking 2k+1 cycle
             S1 = 2'b01;
             S2 = 2'b01;
             preS3 = 2'b01;
         end
 
-        if (cycle1[1] & cycle1[0]) begin //4k+4 cycle
+        if (cycle1[1] & !cycle1[0]) begin //4k+4 cycle
             EnR2 = 1'b1; 
             EnR2p = 1'b1; 
             preEnD2a = 1'b1;

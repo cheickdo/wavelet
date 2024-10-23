@@ -9,9 +9,23 @@ module mac(
 
     wire [size-1:0] in;
     wire [size-1:0] temp;
-    
+    wire [size-1:0] mult;
+    wire [size-1:0] sum0;
+
+    assign sum0 = in0 + in1;
+
+    fixed_mult m0(.in0(sum0), .in1(cons), .product(mult));
+
     //assign in = a + b;
     //assign temp = in * const;
-    assign d = ((in0+in1)*cons) + in3;
+
+
+    //assign d = ((in0+in1)*cons) + in3;
+    assign d = mult + in3;
+
+    initial begin
+        $dumpfile("dump.vcd");
+        $dumpvars(2, mac);
+    end
 
 endmodule
