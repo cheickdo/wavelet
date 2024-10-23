@@ -4,3 +4,6 @@ lib64
 pyvenv.cfg
 bin/
 include/
+etc/
+lib64/
+share/
