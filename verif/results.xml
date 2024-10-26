@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1729650827" />
-    <testcase name="dff_simple_test" classname="testbench" file="/home/chk/Documents/stransform/verif/testbench.py" lineno="10" time="0.00335693359375" sim_time_ns="0.516" ratio_time="153.7117090909091" />
+    <property name="random_seed" value="1729906747" />
+    <testcase name="dff_simple_test" classname="testbench" file="/home/chk/Documents/stransform/verif/testbench.py" lineno="10" time="0.015656709671020508" sim_time_ns="2.016" ratio_time="128.7626865644368" />
   </testsuite>
 </testsuites>

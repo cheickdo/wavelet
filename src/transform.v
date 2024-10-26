@@ -1,4 +1,4 @@
-//Implementation of a one-dimensional recursive 9/7 DWT architecture
+//Implementation of a one-dimensional recursive DAUB-4 DWT architecture
 
 module transform (
     input clk,
@@ -45,13 +45,14 @@ module transform (
 
     parameter size = 32;
 
-    parameter alpha = 2*(2**16);
-    parameter beta = 3*(2**16);
-    parameter gamma = 4*(2**16);
-    parameter delta = 5*(2**16);
-    parameter zeta = 6*(2**16);
-    parameter omega = 2;
-    parameter nabla = 2;
+    parameter alpha = 32'b11111111111111100100010010011000;
+    parameter beta = 32'b00000000000000000110111011011010;
+    parameter gamma = 32'b11111111111111111110111011011010;
+    parameter lambda = 32'b00000000000000010000000000000000;
+    //parameter delta = 5*(2**16);
+    //parameter zeta = 6*(2**16);
+    parameter omega = 32'b00000000000000011110111010001110;
+    parameter nabla = 32'b00000000000000001000010010000100;
 
     //Enable signals
 
@@ -118,31 +119,41 @@ module transform (
     assign S3 = S3shift[3:2];
 
     always@(*) begin
-        //Muxes
-        //assign Even0 = S1[1] ? (S1[0] ? /*R4*/1'b0 : R3) : (S1[0] ? R2 : R1);
-        //assign Even1 = S3[1] ? (S3[0] ? /*D4a*/1'b0 : D3a) : (S3[0] ? D2a : D1a);
-        //assign Even3 = S5[1] ? (S5[0] ? /*D4c*/1'b0 : D3c) : (S5[0] ? D2c : D1c);
-        
-        //assign Odd0 = S2[1] ? (S2[0] ? /*R4p*/1'b0 : R3p) : (S2[0] ? R2p : x);
-        //assign Odd2 = S4[1] ? (S4[0] ? /*D4b*/1'b0 : D3b) : (S4[0] ? D2b : D1b);
-        //assign Odd4 = S6[1] ? (S6[0] ? /*D4d*/1'b0 : D3d) : (S6[0] ? D2d : D1d);
-
-        //if (S7) y <= Even5;
-        //else L <= Even5;
 
         //DAUB-4 DWT Muxes
-        assign Even0 = S1[1] ? (S1[0] ? /*R4*/R3 : R2) : (S1[0] ? R1 : 1'b0);
-        assign Odd0 = S2[1] ? (S2[0] ? /*R4p*/R3p : y) : (S2[0] ? x : 1'b0);
+        //Latch?
+        case(S1)
+        2'b11:Even0 = R3;
+        2'b10: Even0 = R2;
+        2'b01: Even0 = R1;
+        2'b00: Even0 = 32'bx;
+        endcase
 
-        assign Odd2 = S3[1] ? (S3[0] ? /*D4a*/D3a : D2a) : (S3[0] ? D1a : 1'b0);
+        case(S2)
+        2'b11:Odd0 = R3p;
+        2'b10: Odd0 = R2p;
+        2'b01: Odd0 = x;
+        2'b00: Odd0 = 32'bx;
+        endcase
 
-        if (S4) y<= Even3;
-        else L<= Even3;
+        case(S3)
+        2'b11:Odd3 = D3a;
+        2'b10: Odd3 = D2a;
+        2'b01: Odd3 = D1a;
+        endcase     
 
+        //if (S4) y<= Even5;
+        //else L<= Even5;
+        y <= Even5; //verify timing
+        L <= Even5; 
 
     end
 
     always@(posedge clk) begin
+        Even1 <= Even0;
+        Even3 <= Even2;
+        Odd2 <= Odd1;
+
         if (EnR1) R1 <= x;
         if (EnR2) R2 <= y;
         if (EnR3) R3 <= y;
@@ -153,47 +164,21 @@ module transform (
         if (EnR3p) R3p <= y;
         //if (EnR4p) R4p <= y;
 
-        //if (EnD1a) D1a <= Even0;
-        //if (EnD2a) D2a <= Even0;
-        //if (EnD3a) D3a <= Even0;
-        //if (EnD4a) D4a <= Even0;
 
-        if (EnD1a) D1a <= Odd1;
-        if (EnD2a) D2a <= Odd1;
-        if (EnD3a) D3a <= Odd1;
-        //if (EnD4a) D4a <= Odd1;
+        if (EnD1a) D1a <= Odd2;
+        if (EnD2a) D2a <= Odd2;
+        if (EnD3a) D3a <= Odd2;
 
-        //if (EnD1b) D1a <= Odd1;
-        //if (EnD2b) D2a <= Odd1;
-        //if (EnD3b) D3a <= Odd1;
-        //if (EnD4b) D4a <= Odd1;
-
-        //if (EnD1c) D1c <= Even2;
-        //if (EnD2c) D2c <= Even2;
-        //if (EnD3c) D3c <= Even2;
-        //if (EnD4c) D4c <= Even2;
-
-        //if (EnD1d) D1d <= Odd3;
-        //if (EnD2d) D2d <= Odd3;
-        //if (EnD3d) D3d <= Odd3;
-        //if (EnD4d) D4d <= Odd3;
-        
     end
 
-    //Multiple and Accumulate units
-    //mac u0(.in0(Even0), .in1(Even1), .in3(Odd0), .d(Odd1), .cons(alpha));
-    //mac u1(.in0(Odd1), .in1(Odd2), .in3(Even1), .d(Even2), .cons(beta));
-    //mac u2(.in0(Even2), .in1(Even3), .in3(Odd2), .d(Odd3), .cons(gamma));
-    //mac u3(.in0(Odd3), .in1(Odd4), .in3(Even3), .d(Even4), .cons(delta));
-
     //Multiply and accumulate units for Daub-4 DWT
-    mac u0(.in0(Even0), .in1(0), .in3(Odd0), .d(Odd1), .cons(alpha));
-    mac u1(.in0(Odd1), .in1(0), .in3(Even0), .d(Even1), .cons(beta));
-    mac u2(.in0(Odd2), .in1(0), .in3(Even1), .d(Even2), .cons(gamma));
-    mac u3(.in0(Even2), .in1(0), .in3(Odd2), .d(Odd3), .cons(1));
+    z_mac u0(.clk(clk), .in0(Even0), .in1(0), .in3(Odd0), .d(Odd1), .cons(alpha));
+    z_mac u1(.clk(clk),.in0(Odd1), .in1(0), .in3(Even1), .d(Even2), .cons(beta));
+    mac u2(.clk(clk),.in0(Odd3), .in1(0), .in3(Even3), .d(Even4), .cons(gamma));
+    mac u3(.clk(clk),.in0(Even4), .in1(0), .in3(Odd3), .d(Odd4), .cons(lambda));
 
-    fixed_mult m1(.in0(Even2), .in1(omega), .product(Even3));
-    fixed_mult m2(.in0(Odd3), .in1(nabla), .product(H));
+    z_fixed_mult m1(.clk(clk), .in0(Even4), .in1(omega), .product(Even5));
+    z_fixed_mult m2(.clk(clk),.in0(Odd4), .in1(nabla), .product(H));
 
     //control unit
     reg [3:0] state;
@@ -215,10 +200,10 @@ module transform (
         EnR1 = 1'b0;
         EnR2 = 1'b0;
         EnR3 = 1'b0;
-        EnR2p = 1'b0;
+        //EnR2p = 1'b0;
         EnR3p = 1'b0;
-        //S1 = 2'b0;
-        //S2 = 2'b0;
+        S1 = 2'b0;
+        S2 = 2'b0;
         //S3 = 2'b0;
         //S4 = 2'b0;
         //S5 = 2'b0;
@@ -242,9 +227,9 @@ module transform (
             preS3 = 2'b01;
         end
 
-        if (cycle1[1] & !cycle1[0]) begin //4k+4 cycle
+        if (cycle1[1] & cycle1[0]) begin //4k+4 cycle
             EnR2 = 1'b1; 
-            EnR2p = 1'b1; 
+            //EnR2p = 1'b1; 
             preEnD2a = 1'b1;
         end
 
