@@ -92,7 +92,7 @@ module transform (
     reg [3:0] EnD1shift;
     reg [3:0] EnD2shift;
     reg [3:0] EnD3shift;
-    reg [3:0] S3shift;
+    reg [5:0] S3shift;
 
     reg [size-1: 0] Even0;
     reg [size-1: 0] Even1;
@@ -114,9 +114,9 @@ module transform (
 
     //Just for Daub4
     assign EnD1a = EnD1shift[2];
-    assign EnD2a = EnD2shift[2];
-    assign EnD3a = EnD3shift[2];
-    assign S3 = S3shift[3:2];
+    assign EnD2a = EnD2shift[3];
+    assign EnD3a = EnD3shift[3];
+    assign S3 = S3shift[5:4];
 
     always@(*) begin
 
@@ -140,6 +140,7 @@ module transform (
         2'b11:Odd3 = D3a;
         2'b10: Odd3 = D2a;
         2'b01: Odd3 = D1a;
+        2'b00: Odd3 = 32'bx;
         endcase     
 
         //if (S4) y<= Even5;
@@ -205,10 +206,6 @@ module transform (
         S1 = 2'b0;
         S2 = 2'b0;
         //S3 = 2'b0;
-        //S4 = 2'b0;
-        //S5 = 2'b0;
-        //S6 = 2'b0;
-        //S7 = 1'b0;
         SEn = 1'b0;
         preEnD1a = 1'b0;
         preEnD2a = 1'b0;
@@ -227,9 +224,8 @@ module transform (
             preS3 = 2'b01;
         end
 
-        if (cycle1[1] & cycle1[0]) begin //4k+4 cycle
+        if ((!cycle1[1] & cycle1[0]) & ((state[2]) | state[3])) begin //4k+4 cycle -> must be delayed until at least 4 in state is reached
             EnR2 = 1'b1; 
-            //EnR2p = 1'b1; 
             preEnD2a = 1'b1;
         end
 
@@ -239,13 +235,16 @@ module transform (
             preS3 = 2'b10;
         end
 
-        if ((!cycle1[2] & !cycle1[1] & !cycle1[0]) & (state[3] & (state[0]))) begin //8k+9 cycle
+        if (((cycle1[2] & !cycle1[1] & !cycle1[0])) & (state[3] & state[2])) begin //8k+9 cycle
             EnR3 = 1'b1;
-            EnR3p = 1'b1;
-            preEnD3a = 1'b1;
         end
 
-        if ((state[0] & state[1] & state[2] & state[3]) & (cycle1[2] & cycle1[1] & cycle1[0])) begin //8k+16 cycle
+        if (((!cycle1[2] & !cycle1[1] & !cycle1[0])) & (state[3] & state[2])) begin //8k+9 cycle
+            EnR3p = 1'b1;
+            preEnD3a = 1'b1; //this also needs to be queued up
+        end
+
+        if ((state[0] & state[1] & state[2] & state[3]) & (!cycle1[2] & cycle1[1] & !cycle1[0])) begin //8k+16 cycle
             S1 = 2'b11;
             S2 = 2'b11;
             preS3 = 2'b11;
@@ -276,11 +275,13 @@ module transform (
             if (cycle1 == 3'b111) cycle1 <= 0;
             else cycle1 <= cycle1 + 1;
 
-            if (state[1] & state[0]) cycle2En <= 1;
+            if ((state[2] & state[1]) | state[3]) cycle2En <= 1;
+            else cycle2En <= 0;
 
             if (cycle2En) cycle2 <= cycle2 + 1;
+            else cycle2 <= 0;
 
-            S3shift <= {S3shift[1:0], preS3};
+            S3shift <= {S3shift[3:0], preS3};
 
             EnD1shift <= {EnD1shift[3:0], preEnD1a};
             EnD2shift <= {EnD2shift[3:0], preEnD2a};

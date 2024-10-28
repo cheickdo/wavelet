@@ -8,8 +8,8 @@ from cocotb.triggers import RisingEdge
 from cocotb.types import LogicArray
 
 @cocotb.test()
-async def dff_simple_test(dut):
-    """Test that d propagates to q"""
+async def simple_test(dut):
+    """Basic stimulus for wavelet transform"""
 
     # Assert initial output is unknown
     #assert LogicArray(dut.q.value) == LogicArray("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
