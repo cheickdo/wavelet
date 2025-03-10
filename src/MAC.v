@@ -18,13 +18,6 @@ module z_mac(
 
     fixed_mult m0(.in0(sum0), .in1(cons), .product(mult));
 
-    //assign in = a + b;
-    //assign temp = in * const;
-
-
-    //assign d = ((in0+in1)*cons) + in3;
-    //assign d = mult + in3;
-
     always@(posedge clk) begin
         d <= mult + in3;
     end
@@ -56,11 +49,6 @@ module mac(
 
     fixed_mult m0(.in0(sum0), .in1(cons), .product(mult));
 
-    //assign in = a + b;
-    //assign temp = in * const;
-
-
-    //assign d = ((in0+in1)*cons) + in3;
     assign d = mult + in3;
 
     initial begin

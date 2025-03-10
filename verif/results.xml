@@ -1,6 +1,0 @@
-<testsuites name="results">
-  <testsuite name="all" package="all">
-    <property name="random_seed" value="1730077942" />
-    <testcase name="simple_test" classname="testbench" file="/home/chk/Documents/stransform/verif/testbench.py" lineno="10" time="0.024073123931884766" sim_time_ns="2.016" ratio_time="83.74484365653164" />
-  </testsuite>
-</testsuites>
